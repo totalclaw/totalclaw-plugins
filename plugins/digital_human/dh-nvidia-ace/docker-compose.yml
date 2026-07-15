@@ -1,0 +1,7 @@
+# NVIDIA ACE/Tokkio 运行时 — 部署模板(脚手架:镜像 digest 随 Runtime 包发布固定)
+services:
+  ace-runtime:
+    image: "TBD@sha256:TBD"
+    restart: unless-stopped
+    ports:
+      - "18082:18082"

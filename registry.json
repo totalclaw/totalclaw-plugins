@@ -71,13 +71,18 @@
       "files": [
         {
           "path": "README.md",
-          "sha256": "3b9a49b08775dfc26a17487cb0f3542fa7767d37db13b77659baccbb862742eb",
-          "size": 700
+          "sha256": "6af1ff6d7c42367cef8ef0bab3a3858043160921d30b8077fb5468af787c967d",
+          "size": 1262
         },
         {
           "path": "__init__.py",
           "sha256": "d63a1395c467cbf37c778500d24e05aca5f3eb3c9eae45839a3d55235549ac64",
           "size": 357
+        },
+        {
+          "path": "docker-compose.yml",
+          "sha256": "98295ddf70b7c794ddf04d34c56a6567c8cc8f85939206e21232467bbd90443d",
+          "size": 226
         },
         {
           "path": "plugin.yaml",
@@ -88,9 +93,14 @@
           "path": "provider.py",
           "sha256": "27dc9db2d3ee7cf8b58895e45d007b722967c20b5f7454a19ca98b03628313c5",
           "size": 1190
+        },
+        {
+          "path": "runtime.yaml",
+          "sha256": "c1e13a5a42d2843dbf4122bee406613d0567ea39f870e7c0425b2214e9d75870",
+          "size": 834
         }
       ],
-      "bundle_sha256": "9d303dabb6ef60883e36cc04ffe51f50b854bf3d4d513e83dc248a7382125656",
+      "bundle_sha256": "a4c9f006f312f1ceb52612f2c5373f4dd6b93988b47d5eddd3cad7ee5b2fa10b",
       "kind": "backend",
       "requires_env": [
         {
@@ -163,13 +173,18 @@
       "files": [
         {
           "path": "README.md",
-          "sha256": "848ea917e8af8df45ffc95ef3ef10472c25802748edd53868cbc5272ff856df1",
-          "size": 674
+          "sha256": "0114578559796ea38bbbe31f48831e5fc9d435d9cdade94e09c811f3162143d4",
+          "size": 1238
         },
         {
           "path": "__init__.py",
           "sha256": "eb50f9785fd51f824c6aa032578d5ac2ed7d7b9496b64b48eadaf2c4581db684",
           "size": 388
+        },
+        {
+          "path": "docker-compose.yml",
+          "sha256": "982d248ae1da839c21a100f6292d83daa1e4fdcd214e9b8f046c43580263a7c4",
+          "size": 243
         },
         {
           "path": "plugin.yaml",
@@ -180,9 +195,14 @@
           "path": "provider.py",
           "sha256": "7221132a2e2224d79dec2d7f5902c092a52281f01cfd909ca2b359b3c1d3f16d",
           "size": 1241
+        },
+        {
+          "path": "runtime.yaml",
+          "sha256": "452a12e826520e713db3fb70785e3a8245510706fba959a3ef4d7aaf344eccc2",
+          "size": 893
         }
       ],
-      "bundle_sha256": "c1ab469816653f1c12cd23640090002021bd47829c67903fe89724d5b503ca12",
+      "bundle_sha256": "261d1cab6d38c14793c3502c7aa24e4ad26c91744c5ec5326e7290fcee241d4c",
       "kind": "backend",
       "requires_env": [
         {
@@ -209,13 +229,18 @@
       "files": [
         {
           "path": "README.md",
-          "sha256": "4c172d8c5db136a2184338c0dc2fdb087d4d3be97b0c264ad0a71487ab21402d",
-          "size": 607
+          "sha256": "55e5eb678b58e3f34ce74ee8c7a75a05f213a840d29775e94f8eee175c54fed3",
+          "size": 1171
         },
         {
           "path": "__init__.py",
           "sha256": "ea4ccbbf23e2f26b1a3c542d530754733818d4bd997ad14736f07c624922380b",
           "size": 355
+        },
+        {
+          "path": "docker-compose.yml",
+          "sha256": "55ddb148ede30ac2031b254e0351df15da6fc87494a680d1759ddd0ed71072b0",
+          "size": 214
         },
         {
           "path": "plugin.yaml",
@@ -226,9 +251,14 @@
           "path": "provider.py",
           "sha256": "642bc617480206085acd541eea09a8e0e3071718eb13e3a23c73acb5d01c8a66",
           "size": 1183
+        },
+        {
+          "path": "runtime.yaml",
+          "sha256": "eaa6e0419596a34c6f3ed7562d9779c21dad4337a9693c93d2b95650df06bb0f",
+          "size": 803
         }
       ],
-      "bundle_sha256": "9804f2ddb33816372d10abd68a1257175b863c0e0cd2cc30c9e7bfd517d3386b",
+      "bundle_sha256": "ae62443e03868a3fa8c335c242f4d4430e9bbf5db2c4c7ce774b87718e784df5",
       "kind": "backend",
       "requires_env": [
         {

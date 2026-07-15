@@ -1,0 +1,29 @@
+runtime_version: 1
+name: ace-runtime
+display_name: NVIDIA ACE/Tokkio 运行时
+# 状态:脚手架 —— artifacts 的源与 sha256 在 Runtime 包制作任务(PLUGINS_REPO_TODO R-10~R-13)
+# 完成后填入;deployer 对 TBD 值一律拒绝部署并提示"Runtime 包尚未发布"。
+deploy_modes: [local, remote, existing]
+default_mode: local
+requirements:
+  os: [linux]
+  gpu: true
+  min_memory_gb: 32
+  disk_gb: 80
+  docker: preferred
+artifacts:
+  - id: server-image
+    kind: docker_image
+    size_mb: TBD
+    sources:
+      cn: ["TBD"]
+      intl: ["TBD"]
+deploy:
+  compose: docker-compose.yml
+health:
+  endpoint: "http://127.0.0.1:18082/health"
+  ready_timeout_s: 180
+service:
+  default_port: 18082
+  config_key: digital_human.providers.nvidia_ace.endpoint
+# 最重;上游:NVIDIA ACE NIM 微服务

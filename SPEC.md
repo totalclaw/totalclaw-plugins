@@ -75,3 +75,52 @@ def register(ctx):
 - [ ] 缺凭据路径返回引导文案(人肉跑一遍)
 - [ ] README 写清:能力/凭据获取方式/(私有化)Runtime 部署指引链接
 - [ ] `python scripts/gen_registry.py` 通过且 registry.json 已更新
+
+## 7. runtime.yaml 规范(selfhosted 插件的运行时部署清单)
+
+私有化 provider 插件必须附带 `runtime.yaml`——**重运行时(GB 级镜像/模型权重)仍然永不进仓**,
+进仓的只是这份部署清单;agent 的 runtime deployer 按清单代用户下载、部署、启动、写回 endpoint。
+
+```yaml
+runtime_version: 1
+name: duix-runtime
+display_name: DUIX 数字人运行时(CPU 轻量档)
+deploy_modes: [local, remote, existing]  # 本机代部署 / 生成远程服务器部署包 / 已有部署直填 endpoint
+default_mode: local                      # 安装插件后向导默认选中项
+requirements:
+  os: [windows, linux, macos]
+  gpu: false
+  min_memory_gb: 4
+  disk_gb: 8
+  docker: preferred                      # required | preferred | none(裸进程脚本)
+artifacts:                               # 每个工件:多源(按 region)+ sha256/digest 固定
+  - id: server-image
+    kind: docker_image                   # docker_image | archive | model_weights
+    size_mb: 3200
+    sources:
+      cn:   ["<国内镜像源>@sha256:<digest>"]
+      intl: ["<dockerhub 源>@sha256:<digest>"]
+  - id: avatar-assets
+    kind: archive
+    target: assets/
+    size_mb: 800
+    sha256: "<sha256>"
+    sources:
+      cn:   ["https://modelscope.cn/..."]
+      intl: ["https://huggingface.co/..."]
+deploy:
+  compose: docker-compose.yml            # 插件目录内模板(轻文本)
+  bare: scripts/start.sh                 # 可选:无 docker 兜底
+health:
+  endpoint: "http://127.0.0.1:{port}/health"
+  ready_timeout_s: 180
+service:
+  default_port: 18080
+  config_key: digital_human.providers.duix_local.endpoint   # 部署成功自动写回 agent 配置
+```
+
+硬规则:
+- artifacts 的 sha256/镜像 digest **必须固定**(供应链底线,deployer 校验不过整体拒绝);
+- sources 按 region 提供 cn/intl 双源(agent 用 resolve_region() 选源,可 failover);
+- `remote` 模式 = 生成自包含部署包/命令供用户拷去 GPU 服务器执行,不做 SSH 代操作(期权);
+- 部署/启动永远由用户在向导里显式触发——插件注册期零副作用铁律不变。

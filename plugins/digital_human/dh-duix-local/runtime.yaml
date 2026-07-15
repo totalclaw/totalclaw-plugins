@@ -1,0 +1,29 @@
+runtime_version: 1
+name: duix-runtime
+display_name: DUIX 数字人运行时(CPU 轻量档)
+# 状态:脚手架 —— artifacts 的源与 sha256 在 Runtime 包制作任务(PLUGINS_REPO_TODO R-10~R-13)
+# 完成后填入;deployer 对 TBD 值一律拒绝部署并提示"Runtime 包尚未发布"。
+deploy_modes: [local, remote, existing]
+default_mode: local
+requirements:
+  os: [windows, linux, macos]
+  gpu: false
+  min_memory_gb: 4
+  disk_gb: 8
+  docker: preferred
+artifacts:
+  - id: server-image
+    kind: docker_image
+    size_mb: TBD
+    sources:
+      cn: ["TBD"]
+      intl: ["TBD"]
+deploy:
+  compose: docker-compose.yml
+health:
+  endpoint: "http://127.0.0.1:18080/health"
+  ready_timeout_s: 180
+service:
+  default_port: 18080
+  config_key: digital_human.providers.duix_local.endpoint
+# CPU 可跑;上游:硅基智能 DUIX 开源

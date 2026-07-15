@@ -12,3 +12,13 @@
 
 配置优先级:config `digital_human.providers.livetalking_local` > 环境变量。
 装完默认不启用:`totalclaw plugins enable dh-livetalking-local` 或在 qiye-app 设置页开启。
+
+## Runtime 部署(由系统代办,无需手动)
+
+安装本插件后,qiye-app 会引导进入 **Runtime 部署向导**(默认"本机部署"):
+1. 本机部署:agent 按 `runtime.yaml` 清单代下载运行时工件(按地域选国内/国外源,sha256 校验),
+   docker-compose 拉起服务,健康检查通过后自动写回 endpoint 配置——全程无需手动操作;
+2. 远程服务器:生成自包含部署包/命令,拷贝到 GPU 服务器执行后回填地址;
+3. 已有部署:直接填 endpoint。
+
+资源要求:GPU 必需,内存 ≥16GB,磁盘 ≥30GB。

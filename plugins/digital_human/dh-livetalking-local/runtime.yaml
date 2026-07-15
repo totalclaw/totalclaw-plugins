@@ -1,0 +1,29 @@
+runtime_version: 1
+name: livetalking-runtime
+display_name: LiveTalking 数字人运行时(GPU 高保真档)
+# 状态:脚手架 —— artifacts 的源与 sha256 在 Runtime 包制作任务(PLUGINS_REPO_TODO R-10~R-13)
+# 完成后填入;deployer 对 TBD 值一律拒绝部署并提示"Runtime 包尚未发布"。
+deploy_modes: [local, remote, existing]
+default_mode: local
+requirements:
+  os: [linux, windows]
+  gpu: true
+  min_memory_gb: 16
+  disk_gb: 30
+  docker: preferred
+artifacts:
+  - id: server-image
+    kind: docker_image
+    size_mb: TBD
+    sources:
+      cn: ["TBD"]
+      intl: ["TBD"]
+deploy:
+  compose: docker-compose.yml
+health:
+  endpoint: "http://127.0.0.1:18081/health"
+  ready_timeout_s: 180
+service:
+  default_port: 18081
+  config_key: digital_human.providers.livetalking_local.endpoint
+# 需 NVIDIA GPU(消费级 3090/4090 即可,一卡多路);上游:LiveTalking+musetalk
