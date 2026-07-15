@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.DS_Store
+# 签名私钥绝不进仓(SPEC §9)
+cosign.key

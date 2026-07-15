@@ -24,6 +24,8 @@ REPO_RAW_BASE = "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master"
 REPO_GIT = "https://gitee.com/jlzdyx/totalclaw-plugins.git"
 SKIP_NAMES = {"_TEMPLATE"}
 SKIP_FILES = {".DS_Store"}
+SKIP_DIRS = {"__pycache__"}
+SKIP_SUFFIXES = {".pyc", ".pyo"}
 
 # name/category 字符集(SPEC §1/§8):发布后永不改名 —— id 稳定性的根基
 NAME_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
@@ -76,7 +78,9 @@ def _collect_plugin(plugin_dir: Path, category: str) -> dict:
     rel_root = plugin_dir.relative_to(ROOT).as_posix()
     files = []
     for p in sorted(plugin_dir.rglob("*")):
-        if not p.is_file() or p.name in SKIP_FILES:
+        if not p.is_file() or p.name in SKIP_FILES or p.suffix in SKIP_SUFFIXES:
+            continue
+        if SKIP_DIRS & set(p.relative_to(plugin_dir).parts[:-1]):
             continue
         rel = p.relative_to(plugin_dir).as_posix()
         files.append({"path": rel, "sha256": _sha256(p), "size": p.stat().st_size})

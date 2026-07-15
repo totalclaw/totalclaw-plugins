@@ -3,14 +3,20 @@
 对接用户自部署的 DUIX 运行时(硅基智能开源,4核CPU+4G 可跑);插件仅为薄适配器
 
 - provider 名:`duix_local` · 区域:`local` · 类型:`selfhosted` · 形态:`['realtime']`
-- 状态:**脚手架**(plugin.yaml/注册骨架就位,provider 实现分批落地)
+- 状态:**已实现(Local Avatar Runtime 协议 v1 薄客户端);Runtime 包制作进行中(artifacts=TBD,deployer 拒绝部署直至发布)**
+
+## 能力
+
+- 实时:`start_session/speak/interrupt/stop_session/session_status/list_sessions` 全族,对接 [Local Avatar Runtime 协议 v1](../../../docs/LOCAL_RUNTIME_PROTOCOL.md)(DUIX 上游 API 翻译在 Runtime 桥接层)
+- 离线合成不支持(返回引导用云厂商 provider)
+- 铁律:endpoint 未配置即不可用,**绝不自动拉起本地服务**
 
 ## 凭据/配置
 
 - `TOTALCLAW_DH_DUIX_ENDPOINT`:自部署 DUIX 服务地址,如 http://127.0.0.1:18080
 重运行时不在插件内:Runtime 部署包见插件 README;默认不启用,配置 endpoint 后生效
 
-配置优先级:config `digital_human.providers.duix_local` > 环境变量。
+凭据解析优先级(与 agent 既有一致):环境变量 → config `digital_human.providers.duix_local`。
 装完默认不启用:`totalclaw plugins enable dh-duix-local` 或在 qiye-app 设置页开启。
 
 ## Runtime 部署(由系统代办,无需手动)

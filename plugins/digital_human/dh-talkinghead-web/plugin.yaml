@@ -3,8 +3,8 @@ requires_protocol_version: ">=1"
 tested_with: ">=0.63.72"
 name: dh-talkinghead-web
 display_name: TalkingHead 浏览器渲染(海外轻量档)
-version: 0.0.2
-description: "渲染完全在 qiye-app 前端 WebGL(met4citizen/TalkingHead),服务端零 GPU;插件只出资产配置与 TTS 桥【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+version: 0.1.0
+description: "TalkingHead 浏览器渲染(met4citizen/TalkingHead,Ready Player Me 形象):渲染全在 qiye-app 前端 WebGL,服务端零 GPU 零进程;插件只出 render 资产清单与 TTS 桥配置"
 author: totalclaw
 kind: backend
 requires_env: []

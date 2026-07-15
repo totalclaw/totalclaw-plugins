@@ -63,8 +63,9 @@ def register(ctx):
 - 离线合成实现 `synthesize/query_task`;实时实现 session 接口族(agent 侧抽象扩展后按版本适配,
   未支持的方法返回 not-supported,禁止抛裸异常)。
 - 私有化 provider:`is_available()` = endpoint 配置存在;**绝不自动拉起本地服务**。
-- 凭据解析:config `digital_human.providers.<provider>` 优先,厂商标准 env 兜底;缺凭据时
-  方法返回带"请在 qiye-app 配置 X"的引导文案,不抛异常。
+- 凭据解析优先级与 agent 既有三级一致(DIGITAL_HUMAN_PROVIDER_CONFIG.md §4):
+  **厂商标准 env → config `digital_human.providers.<provider>` 子块**(模板 `_config.py`
+  已封装,自包含逐插件拷贝);缺凭据时方法返回带"请在 qiye-app 配置 X"的引导文案,不抛异常。
 
 ## 5. 安全要求
 
@@ -78,9 +79,10 @@ def register(ctx):
 - [ ] plugin.yaml 必填面齐全,version 已递增
 - [ ] 只 import 契约面(§3.2),重依赖为零(§3.3)
 - [ ] register 零副作用;is_available 正确反映凭据/endpoint 状态
-- [ ] 缺凭据路径返回引导文案(人肉跑一遍)
+- [ ] 缺凭据路径返回引导文案(`python3 tests/conformance.py` 机检全接口族)
 - [ ] README 写清:能力/凭据获取方式/(私有化)Runtime 部署指引链接
-- [ ] `python scripts/gen_registry.py` 通过且 registry.json 已更新
+- [ ] `python3 scripts/gen_registry.py` 通过且 registry.json 已更新
+- [ ] `python3 scripts/ci_check.py` 全绿(pre-push 钩子同款;第三方投稿见 CONTRIBUTING.md)
 
 ## 7. runtime.yaml 规范(selfhosted 插件的运行时部署清单)
 
@@ -164,3 +166,12 @@ spec := (id | name) ["@" version]
 - `id` 由 gen_registry.py 从目录结构派生,人手不可篡改(手改 registry 视为投毒,§5);
 - name/category 发布后冻结(§1)→ id 终身不变;插件下架时条目移除,id 永不复用;
 - registry 顶层 `id_scheme` 字段自描述派生规则,多仓共存时以 `registry` 字段区分命名空间。
+
+## 9. registry 签名 v2(期权,防仓库被篡改的纵深)
+
+- 签名:维护者 `cosign generate-key-pair`(私钥**绝不进仓**,cosign.pub 进仓)→ 每次
+  发布 `scripts/sign_registry.sh` 产出 `registry.json.sig`,与 registry 同 commit;
+- 验签:agent 侧复用 tirith_security 验签模板——存在 `registry.json.sig` 且本地有
+  公钥时强制验签,验签失败整体拒绝解析(比逐文件 sha256 高一层:sha256 防传输篡改,
+  签名防仓库本身被篡改);
+- 灰度:`.sig` 缺失时客户端按 v1(仅 sha256)处理——签名启用与否不破坏旧客户端。

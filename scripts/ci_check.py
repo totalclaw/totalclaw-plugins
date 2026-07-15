@@ -47,7 +47,8 @@ BANNED_HEAVY = {"torch", "torchvision", "torchaudio", "tensorflow", "cv2",
 DANGEROUS_PATTERNS = [
     (re.compile(r"(?<![\w.])exec\s*\("), "exec("),
     (re.compile(r"(?<![\w.])eval\s*\("), "eval("),
-    (re.compile(r"pip\s+install"), "pip install"),
+    # "pip install" 出现在引导文案字符串是 SPEC §3.3 要求的;只拦执行形态
+    (re.compile(r"(os\.system|subprocess\.\w+|Popen)\s*\(.*pip"), "执行 pip(动态装包)"),
 ]
 
 REQUIRED_MANIFEST_FIELDS = ["manifest_version", "requires_protocol_version", "name",
@@ -244,6 +245,19 @@ def check_runtime_manifests() -> None:
             fail(f"{rel}: service.config_key 缺失(部署成功无法写回 endpoint)")
 
 
+def check_conformance() -> None:
+    """跑 tests/conformance.py(SPEC §4 全接口族机检);缺 httpx 降级为警示。"""
+    try:
+        import httpx  # noqa: F401
+    except ImportError:
+        warn("缺 httpx——跳过 conformance(插件顶层 import httpx;CI 环境请 pip install httpx pyyaml)")
+        return
+    r = subprocess.run([sys.executable, str(ROOT / "tests" / "conformance.py")],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        fail("conformance 未过:\n" + (r.stderr or r.stdout).strip())
+
+
 def main() -> None:
     baseline = None
     if "--against" in sys.argv:
@@ -254,6 +268,7 @@ def main() -> None:
     check_import_surface()
     check_dangerous_patterns()
     check_runtime_manifests()
+    check_conformance()
 
     for w in warnings:
         print(f"WARN  {w}")

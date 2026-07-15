@@ -3,8 +3,8 @@ requires_protocol_version: ">=1"
 tested_with: ">=0.63.72"
 name: dh-aliyun-dvh
 display_name: 阿里云数字人(DVH)
-version: 0.0.2
-description: "阿里云虚拟数字人:离线视频合成 + 3D 流媒体实时互动(SendText 流式驱动)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+version: 0.1.0
+description: "阿里云虚拟数字人:离线视频合成(SubmitTextTo2D/3DAvatarVideoTask,按秒计费+10分钟免费)+ 3D 流媒体实时互动(StartInstance/SendText 流式/SendCommand 打断/StopInstance)"
 author: totalclaw
 kind: backend
 requires_env:
@@ -14,4 +14,12 @@ requires_env:
   - name: ALIBABA_CLOUD_ACCESS_KEY_SECRET
     description: 阿里云 AccessKey Secret
     prompt: 请输入 阿里云 AccessKey Secret
-optional_env: []
+  - name: ALIYUN_AVATAR_TENANT_ID
+    description: 数字人开放平台 TenantId(控制台创建业务应用后获得)
+    prompt: 请输入 数字人开放平台 TenantId
+  - name: ALIYUN_AVATAR_APP_ID
+    description: 数字人开放平台 AppId(业务应用)
+    prompt: 请输入 数字人开放平台 AppId
+optional_env:
+  - name: ALIYUN_AVATAR_ENDPOINT
+    description: API endpoint(默认 avatar.cn-zhangjiakou.aliyuncs.com)

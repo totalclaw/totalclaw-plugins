@@ -1,7 +1,16 @@
-# LiveTalking 数字人运行时(GPU 高保真档) — 部署模板(脚手架:镜像 digest 随 Runtime 包发布固定)
+# LiveTalking 数字人运行时(GPU 高保真档) — 部署模板(镜像 digest 随 Runtime 包发布固定)
 services:
   livetalking-runtime:
     image: "TBD@sha256:TBD"
     restart: unless-stopped
     ports:
-      - "18081:18081"
+      - "8010:8010"
+    volumes:
+      - ./models:/app/models   # musetalk 权重工件(deployer 按 runtime.yaml 下载校验后落此)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

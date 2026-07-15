@@ -3,14 +3,20 @@
 对接用户自部署的 LiveTalking 运行时(musetalk/wav2lip,WebRTC,多路并发,需 GPU)
 
 - provider 名:`livetalking_local` · 区域:`local` · 类型:`selfhosted` · 形态:`['realtime']`
-- 状态:**脚手架**(plugin.yaml/注册骨架就位,provider 实现分批落地)
+- 状态:**已实现(LiveTalking 原生 API 薄客户端);Runtime 包制作进行中(artifacts=TBD)**
+
+## 能力
+
+- 实时:render type=rtc(`offer_url` 下发,前端 POST SDP 到 /offer 协商,响应含 sessionid)→ `speak`(POST /human type=echo,BYO-LLM)→ `interrupt`(/human interrupt=true;部署版本差异可 config interrupt_path 覆盖)→ `session_status`(/is_speaking)
+- RTMP/虚拟摄像头输出:LiveTalking --transport 启动参数(Runtime 部署选项),直播层见 agent A-18
+- 离线合成不支持
 
 ## 凭据/配置
 
 - `TOTALCLAW_DH_LIVETALKING_ENDPOINT`:自部署 LiveTalking 服务地址
 重运行时不在插件内;默认不启用,配置 endpoint 后生效
 
-配置优先级:config `digital_human.providers.livetalking_local` > 环境变量。
+凭据解析优先级(与 agent 既有一致):环境变量 → config `digital_human.providers.livetalking_local`。
 装完默认不启用:`totalclaw plugins enable dh-livetalking-local` 或在 qiye-app 设置页开启。
 
 ## Runtime 部署(由系统代办,无需手动)

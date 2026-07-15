@@ -3,8 +3,8 @@ requires_protocol_version: ">=1"
 tested_with: ">=0.63.72"
 name: dh-nvidia-ace
 display_name: NVIDIA ACE/Tokkio 私有化
-version: 0.0.2
-description: "对接用户自部署的 NVIDIA ACE/Tokkio 微服务(照片级,GPU,最重)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+version: 0.1.0
+description: "NVIDIA ACE/Tokkio 私有化实时数字人(照片级,GPU,最重):薄适配器对接 Local Avatar Runtime 协议 v1;Runtime 引用 NVIDIA 官方 NIM 分发(需 NGC 凭据)"
 author: totalclaw
 kind: backend
 requires_env:

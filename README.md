@@ -38,14 +38,22 @@ https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/registry.json
 ## 仓库布局
 
 ```
-registry.json                  # 市场索引(机器生成,勿手改)——name/版本/文件清单/sha256/依赖 env
-scripts/gen_registry.py        # 索引生成器:遍历 plugins/ 计算逐文件 sha256 与 bundle hash
-SPEC.md                        # 插件工程规范(必读:自包含原则/契约 import 面/安全要求/发布流程)
+registry.json                  # 市场索引(机器生成,勿手改)——name/id/版本/文件清单/sha256/依赖 env
+SPEC.md                        # 插件工程规范(必读:自包含/契约 import 面/寻址协议/安全/发布)
+CONTRIBUTING.md                # 第三方投稿流程(机检门槛/verified 审核标记)
+scripts/
+  gen_registry.py              # 索引生成器:遍历 plugins/ 计算逐文件 sha256 与 bundle hash
+  ci_check.py                  # 一站机检(pre-push 钩子同款;scripts/hooks/pre-push)
+  backfill_runtime_digest.py   # Runtime 工件发布后回填 digest/sha256
+  sign_registry.sh             # registry 签名 v2(期权,cosign)
+tests/conformance.py           # 插件契约符合性测试(零配置全接口族无裸异常)
+docs/LOCAL_RUNTIME_PROTOCOL.md # 私有化运行时协议 v1(duix/ace 适配器对协议编程)
+runtime-build/                 # Runtime 包构建工程(镜像/权重工件本体永不进仓)
 plugins/
   digital_human/               # 品类目录(第一个品类:数字人 provider)
-    _TEMPLATE/                 # 新 provider 插件模板
-    aliyun_dvh/  tencent_ivh/  heygen/  tavus/            # 云厂商四家
-    duix_local/  livetalking_local/  talkinghead_web/  nvidia_ace/   # 私有化四家
+    _TEMPLATE/                 # 新 provider 插件模板(async 契约实现版)
+    dh-aliyun-dvh/  dh-tencent-ivh/  dh-heygen/  dh-tavus/                    # 云厂商四家
+    dh-duix-local/  dh-livetalking-local/  dh-talkinghead-web/  dh-nvidia-ace/ # 私有化四家
 ```
 
 ## 下载协议(客户端实现参考)

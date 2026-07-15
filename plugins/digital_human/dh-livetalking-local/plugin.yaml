@@ -3,8 +3,8 @@ requires_protocol_version: ">=1"
 tested_with: ">=0.63.72"
 name: dh-livetalking-local
 display_name: LiveTalking 私有化(GPU 高保真档)
-version: 0.0.2
-description: "对接用户自部署的 LiveTalking 运行时(musetalk/wav2lip,WebRTC,多路并发,需 GPU)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+version: 0.1.0
+description: "LiveTalking 私有化实时数字人(musetalk/wav2lip,WebRTC,需 GPU):原生 API 对接(/offer 协商 + /human echo 文本驱动 + 打断);支持 RTMP/虚拟摄像头输出(Runtime 部署选项)"
 author: totalclaw
 kind: backend
 requires_env:
