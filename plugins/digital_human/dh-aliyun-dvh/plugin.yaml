@@ -1,4 +1,4 @@
-manifest_version: 1
+manifest_version: 2
 requires_protocol_version: ">=1"
 tested_with: ">=0.63.72"
 name: dh-aliyun-dvh

@@ -30,8 +30,10 @@ _SDK_MISSING_MSG = (
 )
 _SENDTEXT_MAX_CHARS = 1000  # 官方单条上限
 
-# QueryVideoTaskInfo 的 status 枚举(官方文档;联调时按实际响应复核)
-_TASK_STATUS_MAP = {0: "submitted", 1: "processing", 2: "done", 3: "failed"}
+# QueryVideoTaskInfo 的 status 枚举:仅作 video_url/fail_reason 都缺时的兜底
+# (2026-07-15 实测 status=3 实为"完成"且带 VideoUrl,与早期文档猜测的
+# 3=failed 相反;故完成/失败以 video_url/fail_reason 为权威,本表不再决定终态)。
+_TASK_STATUS_MAP = {0: "submitted", 1: "processing", 2: "processing", 3: "processing"}
 
 
 def _cred(key: str, env_var: str) -> str:
@@ -198,16 +200,25 @@ class AliyunDvhBackend(DigitalHumanBackendBase):
             status_code = int(getattr(item, "status", -1))
         except (TypeError, ValueError):
             status_code = -1
-        status = _TASK_STATUS_MAP.get(status_code, "processing")
         result = getattr(item, "task_result", None)
         video_url = str(getattr(result, "video_url", "") or "")
+        fail_reason = str(getattr(result, "fail_reason", "") or "")
         duration = getattr(result, "video_duration", None)
         try:
             duration_s = float(duration) if duration is not None else None
         except (TypeError, ValueError):
             duration_s = None
-        if video_url and status != "failed":
+        # 完成判定以 video_url 为权威信号(2026-07-15 实测:合成完成时
+        # Status=3 且 TaskResult.VideoUrl 就绪 —— 数值状态码的其余取值未逐一
+        # 核实,故不硬映射,避免像旧 _TASK_STATUS_MAP 把 3 误判为 failed 导致
+        # "已出片却报失败"):有 video_url → done;否则有 fail_reason → failed;
+        # 都没有 → 仍在处理(轮询继续)。
+        if video_url:
             status = "done"
+        elif fail_reason:
+            status = "failed"
+        else:
+            status = _TASK_STATUS_MAP.get(status_code, "processing")
         return DigitalHumanResult(
             success=status == "done",
             provider=self.name,
@@ -215,8 +226,7 @@ class AliyunDvhBackend(DigitalHumanBackendBase):
             status=status,
             video_url=video_url,
             duration_s=duration_s,
-            error_message=(str(getattr(result, "fail_reason", "") or "") or None)
-            if status == "failed" else None,
+            error_message=(fail_reason or None) if status == "failed" else None,
             raw=getattr(item, "to_map", lambda: {})(),
         )
 
