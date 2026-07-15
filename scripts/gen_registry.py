@@ -12,16 +12,22 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PLUGINS_DIR = ROOT / "plugins"
 REGISTRY = ROOT / "registry.json"
+REGISTRY_NAME = "totalclaw-plugins"
 REPO_RAW_BASE = "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master"
 REPO_GIT = "https://gitee.com/jlzdyx/totalclaw-plugins.git"
 SKIP_NAMES = {"_TEMPLATE"}
 SKIP_FILES = {".DS_Store"}
+
+# name/category 字符集(SPEC §1/§8):发布后永不改名 —— id 稳定性的根基
+NAME_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
+CATEGORY_RE = re.compile(r"^[a-z0-9][a-z0-9_]*$")
 
 
 def _require_yaml():
@@ -58,6 +64,10 @@ def _collect_plugin(plugin_dir: Path, category: str) -> dict:
         raise SystemExit(f"{manifest_path}: plugin.yaml 缺 name")
     if name != plugin_dir.name:
         raise SystemExit(f"{manifest_path}: name={name!r} 与目录名 {plugin_dir.name!r} 不一致")
+    if not NAME_RE.match(name):
+        raise SystemExit(f"{manifest_path}: name={name!r} 不合法(仅 [a-z0-9_-],字母数字开头)")
+    if not CATEGORY_RE.match(category):
+        raise SystemExit(f"plugins/{category}: 品类目录名不合法(仅 [a-z0-9_],字母数字开头)")
     if manifest.get("manifest_version") != 1:
         raise SystemExit(f"{manifest_path}: manifest_version 必须为 1")
     if not manifest.get("version"):
@@ -76,6 +86,9 @@ def _collect_plugin(plugin_dir: Path, category: str) -> dict:
     entry = {
         # ── 市场 schema v1 兼容字段(agent 既有 resolve/install 消费) ──
         "name": name,
+        # 系统唯一 ID(SPEC §8):<registry>/<category>/<name>,发布后永不变;
+        # 安装器按 name 或 id 均可寻址(spec 含 "/" 走 id 精确匹配)
+        "id": f"{REGISTRY_NAME}/{category}/{name}",
         "display_name": manifest.get("display_name") or name,
         "description": manifest.get("description") or "",
         "version": str(manifest["version"]),
@@ -112,7 +125,8 @@ def build() -> dict:
         raise SystemExit(f"插件 name 重复:{sorted(n for n in names if names.count(n) > 1)}")
     return {
         "schema_version": 1,
-        "registry": "totalclaw-plugins",
+        "registry": REGISTRY_NAME,
+        "id_scheme": "<registry>/<category>/<name>",
         "source": REPO_GIT,
         "plugins": entries,
     }

@@ -5,7 +5,12 @@
 ## 1. 目录与命名
 
 - 布局:`plugins/<category>/<name>/`,安装后落 `<TOTALCLAW_HOME>/plugins/<name>/`(扁平)。
-- `name` = 全仓唯一 ID,仅 `[a-z0-9_-]`,带品类前缀防撞名(数字人用 `dh-` 前缀,如 `dh-aliyun-dvh`)。
+- `name` = 全仓唯一短 ID,仅 `[a-z0-9_-]`(字母数字开头),带品类前缀防撞名(数字人用 `dh-` 前缀,如 `dh-aliyun-dvh`)。
+- 每个插件另有**系统唯一 ID** `id = <registry>/<category>/<name>`(如
+  `totalclaw-plugins/digital_human/dh-aliyun-dvh`),由 gen_registry.py 自动派生写入
+  registry——不进 plugin.yaml、不许手填;寻址与安装协议见 §8。
+- **发布后永不改名**:name/id 一经进入 master 的 registry.json 即冻结;确需改名 =
+  新建插件(新 name)+ 旧条目走弃用流程,绝不复用旧 name 指向不同插件。
 - 每插件必含:`plugin.yaml`、`__init__.py`、`README.md`;可选 `provider.py` 等实现文件、`after-install.md`。
 
 ## 2. plugin.yaml 必填面
@@ -124,3 +129,37 @@ service:
 - sources 按 region 提供 cn/intl 双源(agent 用 resolve_region() 选源,可 failover);
 - `remote` 模式 = 生成自包含部署包/命令供用户拷去 GPU 服务器执行,不做 SSH 代操作(期权);
 - 部署/启动永远由用户在向导里显式触发——插件注册期零副作用铁律不变。
+
+## 8. 寻址与安装协议(name / 唯一 ID / 版本钉扎)
+
+agent(及任何安装器)对本仓插件的寻址坐标,**双坐标 + 可选版本钉扎**:
+
+| 坐标 | 形态 | 例 | 唯一域 |
+|---|---|---|---|
+| `name` | `[a-z0-9_-]` 短 ID | `dh-aliyun-dvh` | 本仓唯一 |
+| `id` | `<registry>/<category>/<name>` | `totalclaw-plugins/digital_human/dh-aliyun-dvh` | 跨仓全局唯一 |
+
+安装 spec 字符串文法:
+
+```
+spec := (id | name) ["@" version]
+```
+
+**解析规则(安装器必须实现,无歧义)**:
+
+1. 先剥离可选 `@<version>` 后缀;
+2. 剩余部分**含 `/`** → 按 `id` 字段精确匹配(name 字符集禁 `/`,故无歧义);
+   不含 `/` → 按 `name` 字段精确匹配;
+3. 只做大小写敏感的精确匹配,**不做模糊/前缀匹配**;未命中时可在错误信息里
+   列近似候选,但绝不自动替用户选;
+4. 带 `@version` 钉扎时:与 registry 当前 version 逐字比对,不一致即报错
+   "registry 仅分发最新版 X,请去掉钉扎或等待发布"——本仓 raw/master 只 serve
+   最新版,历史版本回溯是期权(git tag `<name>/v<version>`);
+5. 完整性锚点:命中条目后以 `files[].sha256` 逐文件校验 + `bundle_sha256`
+   整体校验(下载协议见 README),不是以 URL 为信任根。
+
+**ID 稳定性契约**(为什么 agent 可以放心把 id 存进配置/会话/工单):
+
+- `id` 由 gen_registry.py 从目录结构派生,人手不可篡改(手改 registry 视为投毒,§5);
+- name/category 发布后冻结(§1)→ id 终身不变;插件下架时条目移除,id 永不复用;
+- registry 顶层 `id_scheme` 字段自描述派生规则,多仓共存时以 `registry` 字段区分命名空间。

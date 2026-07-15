@@ -1,10 +1,12 @@
 {
   "schema_version": 1,
   "registry": "totalclaw-plugins",
+  "id_scheme": "<registry>/<category>/<name>",
   "source": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
   "plugins": [
     {
       "name": "dh-aliyun-dvh",
+      "id": "totalclaw-plugins/digital_human/dh-aliyun-dvh",
       "display_name": "阿里云数字人(DVH)",
       "description": "阿里云虚拟数字人:离线视频合成 + 3D 流媒体实时互动(SendText 流式驱动)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -56,6 +58,7 @@
     },
     {
       "name": "dh-duix-local",
+      "id": "totalclaw-plugins/digital_human/dh-duix-local",
       "display_name": "DUIX 私有化(CPU 轻量档)",
       "description": "对接用户自部署的 DUIX 运行时(硅基智能开源,4核CPU+4G 可跑);插件仅为薄适配器【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -112,6 +115,7 @@
     },
     {
       "name": "dh-heygen",
+      "id": "totalclaw-plugins/digital_human/dh-heygen",
       "display_name": "HeyGen LiveAvatar",
       "description": "HeyGen:实时 LiveAvatar(WebRTC/iframe)与离线视频生成,按分钟计费【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -158,6 +162,7 @@
     },
     {
       "name": "dh-livetalking-local",
+      "id": "totalclaw-plugins/digital_human/dh-livetalking-local",
       "display_name": "LiveTalking 私有化(GPU 高保真档)",
       "description": "对接用户自部署的 LiveTalking 运行时(musetalk/wav2lip,WebRTC,多路并发,需 GPU)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -214,6 +219,7 @@
     },
     {
       "name": "dh-nvidia-ace",
+      "id": "totalclaw-plugins/digital_human/dh-nvidia-ace",
       "display_name": "NVIDIA ACE/Tokkio 私有化",
       "description": "对接用户自部署的 NVIDIA ACE/Tokkio 微服务(照片级,GPU,最重)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -270,6 +276,7 @@
     },
     {
       "name": "dh-talkinghead-web",
+      "id": "totalclaw-plugins/digital_human/dh-talkinghead-web",
       "display_name": "TalkingHead 浏览器渲染(海外轻量档)",
       "description": "渲染完全在 qiye-app 前端 WebGL(met4citizen/TalkingHead),服务端零 GPU;插件只出资产配置与 TTS 桥【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -310,6 +317,7 @@
     },
     {
       "name": "dh-tavus",
+      "id": "totalclaw-plugins/digital_human/dh-tavus",
       "display_name": "Tavus CVI",
       "description": "Tavus 对话式视频接口:BYO-LLM 原生设计,端到端 <500ms【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
@@ -356,6 +364,7 @@
     },
     {
       "name": "dh-tencent-ivh",
+      "id": "totalclaw-plugins/digital_human/dh-tencent-ivh",
       "display_name": "腾讯云智能数智人(IVH)",
       "description": "腾讯云智能数智人:形象类型最全(2D精品/小样本/3D写实/半写实/卡通)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
       "version": "0.0.1",
