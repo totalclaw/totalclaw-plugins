@@ -2,4 +2,11 @@
 # totalclaw-plugins pre-push 机检(R-3)
 # 启用(一次性):git config core.hooksPath scripts/hooks
 cd "$(git rev-parse --show-toplevel)" || exit 1
-exec python3 scripts/ci_check.py
+# 择优:新版本判定标准库最准确,且必须带 PyYAML(gen_registry 依赖)
+for py in python3.13 python3.12 python3.11 python3.10 python3; do
+  if command -v "$py" >/dev/null 2>&1 && "$py" -c "import yaml" >/dev/null 2>&1; then
+    exec "$py" scripts/ci_check.py
+  fi
+done
+echo "找不到带 PyYAML 的 python3 —— pip install pyyaml 后重试" >&2
+exit 1

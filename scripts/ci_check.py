@@ -69,8 +69,30 @@ def warn(msg: str) -> None:
     warnings.append(msg)
 
 
-def _stdlib_names() -> frozenset:
-    return getattr(sys, "stdlib_module_names", frozenset())
+_STDLIB_CACHE: dict = {}
+
+
+def _is_stdlib(top: str) -> bool:
+    """标准库判定;Python <3.10 无 sys.stdlib_module_names,回退 find_spec origin。"""
+    names = getattr(sys, "stdlib_module_names", None)
+    if names is not None:
+        return top in names
+    if top in _STDLIB_CACHE:
+        return _STDLIB_CACHE[top]
+    import importlib.util
+    import sysconfig
+    ok = False
+    try:
+        spec = importlib.util.find_spec(top)
+    except (ImportError, ValueError):
+        spec = None
+    if spec is not None:
+        if spec.origin in ("built-in", "frozen"):
+            ok = True
+        elif spec.origin:
+            ok = spec.origin.startswith(sysconfig.get_paths()["stdlib"])
+    _STDLIB_CACHE[top] = ok
+    return ok
 
 
 def iter_plugin_dirs():
@@ -160,7 +182,6 @@ def check_version_monotonic(new_data: dict, baseline_ref: str | None) -> None:
 
 
 def check_import_surface() -> None:
-    stdlib = _stdlib_names()
     for category, plugin_dir in iter_plugin_dirs():
         for py in sorted(plugin_dir.rglob("*.py")):
             rel = py.relative_to(ROOT).as_posix()
@@ -184,7 +205,7 @@ def check_import_surface() -> None:
                 elif indent == "":
                     # 顶层 import 只许:契约面 / 标准库 / httpx
                     ok = (any(module == p or module.startswith(p + ".") for p in ALLOWED_PREFIXES)
-                          or top in stdlib or top in ALLOWED_THIRD_PARTY
+                          or _is_stdlib(top) or top in ALLOWED_THIRD_PARTY
                           or top == "__future__")
                     if not ok:
                         fail(f"{loc}: 顶层 import {module} 不在契约面(三方 SDK 须方法内惰性 import,SPEC §3.3)")
