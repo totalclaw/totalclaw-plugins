@@ -1,0 +1,13 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+name: dh-livetalking-local
+display_name: LiveTalking 私有化(GPU 高保真档)
+version: 0.0.1
+description: "对接用户自部署的 LiveTalking 运行时(musetalk/wav2lip,WebRTC,多路并发,需 GPU)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+author: totalclaw
+kind: backend
+requires_env:
+  - name: TOTALCLAW_DH_LIVETALKING_ENDPOINT
+    description: 自部署 LiveTalking 服务地址
+    prompt: 请输入 自部署 LiveTalking 服务地址
+optional_env: []

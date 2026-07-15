@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "registry": "totalclaw-plugins",
+  "source": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+  "plugins": [
+    {
+      "name": "dh-aliyun-dvh",
+      "display_name": "阿里云数字人(DVH)",
+      "description": "阿里云虚拟数字人:离线视频合成 + 3D 流媒体实时互动(SendText 流式驱动)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-aliyun-dvh",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-aliyun-dvh",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-aliyun-dvh"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "69107b4df17bca579745dbe506999ddf45a1c6a6a164bbaaec584d84bbae347e",
+          "size": 689
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "3d668d1a26e109f4a46ee824f2924bd178e3e4ca6701647fa6ca83b4cd91eae2",
+          "size": 351
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "fe74f0e086dda04a777736fcb07b5037e8ebbdcb9984b11e5436c35a78872de4",
+          "size": 643
+        },
+        {
+          "path": "provider.py",
+          "sha256": "8ff746622e5308fd9228abca62bb77fe7b2669fe777a8776444a0854b7365809",
+          "size": 1211
+        }
+      ],
+      "bundle_sha256": "734b93b7f8a7da8eb89dd0f75aeb3333a0b541a506163b33ed8a68a4032dbeb9",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "ALIBABA_CLOUD_ACCESS_KEY_ID",
+          "description": "阿里云 AccessKey ID",
+          "prompt": "请输入 阿里云 AccessKey ID"
+        },
+        {
+          "name": "ALIBABA_CLOUD_ACCESS_KEY_SECRET",
+          "description": "阿里云 AccessKey Secret",
+          "prompt": "请输入 阿里云 AccessKey Secret"
+        }
+      ]
+    },
+    {
+      "name": "dh-duix-local",
+      "display_name": "DUIX 私有化(CPU 轻量档)",
+      "description": "对接用户自部署的 DUIX 运行时(硅基智能开源,4核CPU+4G 可跑);插件仅为薄适配器【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-duix-local",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-duix-local",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-duix-local"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "3b9a49b08775dfc26a17487cb0f3542fa7767d37db13b77659baccbb862742eb",
+          "size": 700
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "d63a1395c467cbf37c778500d24e05aca5f3eb3c9eae45839a3d55235549ac64",
+          "size": 357
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "42357f544b57bda86b1fbd564aa4ecea26043dcad752c8417a2583dde8d86cfc",
+          "size": 586
+        },
+        {
+          "path": "provider.py",
+          "sha256": "27dc9db2d3ee7cf8b58895e45d007b722967c20b5f7454a19ca98b03628313c5",
+          "size": 1190
+        }
+      ],
+      "bundle_sha256": "9d303dabb6ef60883e36cc04ffe51f50b854bf3d4d513e83dc248a7382125656",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "TOTALCLAW_DH_DUIX_ENDPOINT",
+          "description": "自部署 DUIX 服务地址,如 http://127.0.0.1:18080",
+          "prompt": "请输入 自部署 DUIX 服务地址,如 http://127.0.0.1:18080"
+        }
+      ]
+    },
+    {
+      "name": "dh-heygen",
+      "display_name": "HeyGen LiveAvatar",
+      "description": "HeyGen:实时 LiveAvatar(WebRTC/iframe)与离线视频生成,按分钟计费【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-heygen",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-heygen",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-heygen"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "47d9b522e8defbef7cfc614923d8194754480407c3810467abd689c905aa50a1",
+          "size": 504
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "be01c28458cd5c4489eae3380d28458023d7274f9eec9c082336f55103a1d336",
+          "size": 335
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "74377b9fe57e952ab21832ca8db34e07bb1cb166bea1496f508a215ed8c090bb",
+          "size": 452
+        },
+        {
+          "path": "provider.py",
+          "sha256": "25ebf0910508cd773717292c5d6b627f61059e28842ea7f2dc120a0bd0ab41ca",
+          "size": 1144
+        }
+      ],
+      "bundle_sha256": "9e483b9c7c2d667d694a11860df2eb3d0e1045d5990b2f3d743c1ff50bb60cb0",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "HEYGEN_API_KEY",
+          "description": "HeyGen API Key",
+          "prompt": "请输入 HeyGen API Key"
+        }
+      ]
+    },
+    {
+      "name": "dh-livetalking-local",
+      "display_name": "LiveTalking 私有化(GPU 高保真档)",
+      "description": "对接用户自部署的 LiveTalking 运行时(musetalk/wav2lip,WebRTC,多路并发,需 GPU)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-livetalking-local",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-livetalking-local",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-livetalking-local"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "848ea917e8af8df45ffc95ef3ef10472c25802748edd53868cbc5272ff856df1",
+          "size": 674
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "eb50f9785fd51f824c6aa032578d5ac2ed7d7b9496b64b48eadaf2c4581db684",
+          "size": 388
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "ec4eb83951a67c0deef809e6b0a73bd943b1ce8a71ae61c7630f6a0c6ac0f05c",
+          "size": 560
+        },
+        {
+          "path": "provider.py",
+          "sha256": "7221132a2e2224d79dec2d7f5902c092a52281f01cfd909ca2b359b3c1d3f16d",
+          "size": 1241
+        }
+      ],
+      "bundle_sha256": "c1ab469816653f1c12cd23640090002021bd47829c67903fe89724d5b503ca12",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "TOTALCLAW_DH_LIVETALKING_ENDPOINT",
+          "description": "自部署 LiveTalking 服务地址",
+          "prompt": "请输入 自部署 LiveTalking 服务地址"
+        }
+      ]
+    },
+    {
+      "name": "dh-nvidia-ace",
+      "display_name": "NVIDIA ACE/Tokkio 私有化",
+      "description": "对接用户自部署的 NVIDIA ACE/Tokkio 微服务(照片级,GPU,最重)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-nvidia-ace",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-nvidia-ace",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-nvidia-ace"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "4c172d8c5db136a2184338c0dc2fdb087d4d3be97b0c264ad0a71487ab21402d",
+          "size": 607
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "ea4ccbbf23e2f26b1a3c542d530754733818d4bd997ad14736f07c624922380b",
+          "size": 355
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "e309b61f24f90be363548c72b82be9d3f39fecb85ba99c2065c1238ebe6e1549",
+          "size": 499
+        },
+        {
+          "path": "provider.py",
+          "sha256": "642bc617480206085acd541eea09a8e0e3071718eb13e3a23c73acb5d01c8a66",
+          "size": 1183
+        }
+      ],
+      "bundle_sha256": "9804f2ddb33816372d10abd68a1257175b863c0e0cd2cc30c9e7bfd517d3386b",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "TOTALCLAW_DH_ACE_ENDPOINT",
+          "description": "自部署 ACE 服务地址",
+          "prompt": "请输入 自部署 ACE 服务地址"
+        }
+      ]
+    },
+    {
+      "name": "dh-talkinghead-web",
+      "display_name": "TalkingHead 浏览器渲染(海外轻量档)",
+      "description": "渲染完全在 qiye-app 前端 WebGL(met4citizen/TalkingHead),服务端零 GPU;插件只出资产配置与 TTS 桥【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-talkinghead-web",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-talkinghead-web",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-talkinghead-web"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "973ae0c93b3e17e2749033668d3b5317a4bac2f2bea61bc7f2ffac05fed61d73",
+          "size": 649
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "e8b0845205c4e564e7d8d9bda91ecc17739cad779db19e8e364aecbdeb8ec72a",
+          "size": 387
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "f97f0902d8ef1cb3d71d92865c94531a6e10225a6da0808f1c82fa8149558a83",
+          "size": 436
+        },
+        {
+          "path": "provider.py",
+          "sha256": "44eaf32fbaf2c242d9d2c09c8dcd3e30ba2bd143779a0c101216c1daf3d3eecb",
+          "size": 1217
+        }
+      ],
+      "bundle_sha256": "314d8a60b307de53034e12bb81dba8891a9ef4d8da426a7b53e2e127296ca6db",
+      "kind": "backend",
+      "requires_env": []
+    },
+    {
+      "name": "dh-tavus",
+      "display_name": "Tavus CVI",
+      "description": "Tavus 对话式视频接口:BYO-LLM 原生设计,端到端 <500ms【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-tavus",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-tavus",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-tavus"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "7703c3938b9a6c035c18fc132374b1c3e219b157ccbe34563b89f2b1e067589d",
+          "size": 469
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "eca6273af676aa5ffae9802e409ac8e99124e8672ab04d7dbc03d0aee97797fe",
+          "size": 324
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "8e3bb3a1e6763202ec3b04af9e22602cbc045afe86e22bdcc78e1e0348416b77",
+          "size": 429
+        },
+        {
+          "path": "provider.py",
+          "sha256": "823639be81c7c251a721a9568782e0e059373ad404908eb58d3ba5bca0e966ff",
+          "size": 1106
+        }
+      ],
+      "bundle_sha256": "a1676e443a74e25e9e7a113578137ba7406c9c1492ab8f8addd3104af722069a",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "TAVUS_API_KEY",
+          "description": "Tavus API Key",
+          "prompt": "请输入 Tavus API Key"
+        }
+      ]
+    },
+    {
+      "name": "dh-tencent-ivh",
+      "display_name": "腾讯云智能数智人(IVH)",
+      "description": "腾讯云智能数智人:形象类型最全(2D精品/小样本/3D写实/半写实/卡通)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】",
+      "version": "0.0.1",
+      "author": "totalclaw",
+      "verified": true,
+      "category": "digital_human",
+      "path": "plugins/digital_human/dh-tencent-ivh",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/plugins/digital_human/dh-tencent-ivh",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-plugins.git",
+        "subdir": "plugins/digital_human/dh-tencent-ivh"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "6743dd8575301d9155d8d52cc84b64223593bd18ad87599e3daa1fcb040b2c24",
+          "size": 625
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "7ba3811c5b28e575741a0eb049ea439f9b348a4939508999c5cefea97e8e0a6e",
+          "size": 360
+        },
+        {
+          "path": "plugin.yaml",
+          "sha256": "4c45e35909cc919682335e4ccd0546e63dd9cc86fed4d1b16ad9da1bbcc99236",
+          "size": 611
+        },
+        {
+          "path": "provider.py",
+          "sha256": "a17b5129f26f980f2edb7b8c5fc97d328cf7a7abc6041460c9ddbe1d73622d23",
+          "size": 1218
+        }
+      ],
+      "bundle_sha256": "e98496194cb78e407c01c5b28f1876b3241e689f949c798442d72856e829d6ec",
+      "kind": "backend",
+      "requires_env": [
+        {
+          "name": "TENCENTCLOUD_SECRET_ID",
+          "description": "腾讯云 SecretId",
+          "prompt": "请输入 腾讯云 SecretId"
+        },
+        {
+          "name": "TENCENTCLOUD_SECRET_KEY",
+          "description": "腾讯云 SecretKey",
+          "prompt": "请输入 腾讯云 SecretKey"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+name: dh-tavus
+display_name: Tavus CVI
+version: 0.0.1
+description: "Tavus 对话式视频接口:BYO-LLM 原生设计,端到端 <500ms【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+author: totalclaw
+kind: backend
+requires_env:
+  - name: TAVUS_API_KEY
+    description: Tavus API Key
+    prompt: 请输入 Tavus API Key
+optional_env: []

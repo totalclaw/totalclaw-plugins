@@ -1,0 +1,16 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+name: dh-tencent-ivh
+display_name: 腾讯云智能数智人(IVH)
+version: 0.0.1
+description: "腾讯云智能数智人:形象类型最全(2D精品/小样本/3D写实/半写实/卡通)【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+author: totalclaw
+kind: backend
+requires_env:
+  - name: TENCENTCLOUD_SECRET_ID
+    description: 腾讯云 SecretId
+    prompt: 请输入 腾讯云 SecretId
+  - name: TENCENTCLOUD_SECRET_KEY
+    description: 腾讯云 SecretKey
+    prompt: 请输入 腾讯云 SecretKey
+optional_env: []

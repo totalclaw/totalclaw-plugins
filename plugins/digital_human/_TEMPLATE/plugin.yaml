@@ -1,0 +1,13 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+name: dh-CHANGEME
+display_name: CHANGEME
+version: 0.0.1
+description: "CHANGEME【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+author: totalclaw
+kind: backend
+requires_env:
+  - name: CHANGEME_API_KEY
+    description: CHANGEME
+    prompt: CHANGEME
+optional_env: []

@@ -1,0 +1,10 @@
+"""HeyGen LiveAvatar — TotalClaw 数字人 provider 插件(自包含,仅 import 契约面)。"""
+
+
+def register(ctx):
+    from .provider import HeygenBackend
+
+    from totalclaw_core.plugins.digital_human import register_backend
+
+    register_backend(HeygenBackend())
+    ctx.logger.info("digital_human provider registered: heygen")

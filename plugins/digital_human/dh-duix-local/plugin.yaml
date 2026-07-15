@@ -1,0 +1,13 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+name: dh-duix-local
+display_name: DUIX 私有化(CPU 轻量档)
+version: 0.0.1
+description: "对接用户自部署的 DUIX 运行时(硅基智能开源,4核CPU+4G 可跑);插件仅为薄适配器【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
+author: totalclaw
+kind: backend
+requires_env:
+  - name: TOTALCLAW_DH_DUIX_ENDPOINT
+    description: 自部署 DUIX 服务地址,如 http://127.0.0.1:18080
+    prompt: 请输入 自部署 DUIX 服务地址,如 http://127.0.0.1:18080
+optional_env: []
