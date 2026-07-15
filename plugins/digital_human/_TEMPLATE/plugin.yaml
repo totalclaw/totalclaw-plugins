@@ -1,5 +1,6 @@
 manifest_version: 1
 requires_protocol_version: ">=1"
+tested_with: ">=0.63.72"   # 实测过的 agent 版本下限(PEP 440),随 agent 契约版本联动更新
 name: dh-CHANGEME
 display_name: CHANGEME
 version: 0.0.1

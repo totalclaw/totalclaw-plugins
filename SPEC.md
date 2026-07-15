@@ -18,6 +18,7 @@
 ```yaml
 manifest_version: 1                  # 安装器兼容检查(硬性)
 requires_protocol_version: ">=1"     # SDK 协议版本(安装期 strict 校验)
+tested_with: ">=0.63.72"             # 实测过的 agent 版本下限(PEP 440,软检查),随契约版本联动更新
 name: dh-aliyun-dvh                  # 唯一 ID(与目录名一致)
 display_name: 阿里云数字人(DVH)
 version: 0.1.0                       # semver;改动必须递增

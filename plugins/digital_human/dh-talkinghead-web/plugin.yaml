@@ -1,8 +1,9 @@
 manifest_version: 1
 requires_protocol_version: ">=1"
+tested_with: ">=0.63.72"
 name: dh-talkinghead-web
 display_name: TalkingHead 浏览器渲染(海外轻量档)
-version: 0.0.1
+version: 0.0.2
 description: "渲染完全在 qiye-app 前端 WebGL(met4citizen/TalkingHead),服务端零 GPU;插件只出资产配置与 TTS 桥【脚手架:接口骨架已就位,provider 实现按 PLUGINS_REPO_TODO 分批落地】"
 author: totalclaw
 kind: backend
