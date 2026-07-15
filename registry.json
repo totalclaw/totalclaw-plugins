@@ -9,7 +9,7 @@
       "id": "totalclaw-plugins/digital_human/dh-aliyun-dvh",
       "display_name": "阿里云数字人(DVH)",
       "description": "阿里云虚拟数字人:离线视频合成(SubmitTextTo2D/3DAvatarVideoTask,按秒计费+10分钟免费)+ 3D 流媒体实时互动(StartInstance/SendText 流式/SendCommand 打断/StopInstance)",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "totalclaw",
       "verified": true,
       "tested_with": ">=0.63.72",
@@ -38,16 +38,16 @@
         },
         {
           "path": "plugin.yaml",
-          "sha256": "09d4d20f380e117475f6ebc91ef53e4743d0cb5b697fdcb857c4f9eed5208467",
+          "sha256": "d4e1f08415ec6b59e38b899d8083bbff70e0139fce8e86bf4497d6e76eec6a39",
           "size": 1098
         },
         {
           "path": "provider.py",
-          "sha256": "e0e07054cf0580a99f53c2ae8ad98c72f4b91a3890cb59d889bdd83956092b24",
-          "size": 18031
+          "sha256": "195cd0b860c3401e74cb6cb482c098ce6e45529c5c9dacce1d5c185badddbf38",
+          "size": 18723
         }
       ],
-      "bundle_sha256": "8edaaa640e00ecde804aefb5c156198d41dba1578df48e0df23c88de1fd9107a",
+      "bundle_sha256": "ed0431fbba436e17164050c3d3031baf9ddeacfad0d42e9303a23a457905c504",
       "kind": "backend",
       "requires_env": [
         {

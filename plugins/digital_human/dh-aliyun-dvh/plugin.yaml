@@ -1,9 +1,9 @@
-manifest_version: 2
+manifest_version: 1
 requires_protocol_version: ">=1"
 tested_with: ">=0.63.72"
 name: dh-aliyun-dvh
 display_name: 阿里云数字人(DVH)
-version: 0.1.0
+version: 0.1.1
 description: "阿里云虚拟数字人:离线视频合成(SubmitTextTo2D/3DAvatarVideoTask,按秒计费+10分钟免费)+ 3D 流媒体实时互动(StartInstance/SendText 流式/SendCommand 打断/StopInstance)"
 author: totalclaw
 kind: backend
