@@ -1,4 +1,58 @@
 {
   "schema_version": "1",
-  "models": []
+  "_note": "Router-1 路由模型清单。国内线路默认千问、海外线路默认 Gemma —— 这个区分从选型报告起就在，分发层不抹平。sha256 取自 HuggingFace LFS oid（即文件本身的 sha256），非人工填写。源按线路排序，校验失败自动换下一个源。requirements 是宿主硬件门的判据：内存按「权重 + KV cache + 运行时 + 系统」留足富余，磁盘按「权重 + 下载临时文件」留足余量。",
+  "models": [
+    {
+      "id": "router-qwen3.5-4b-q4km",
+      "label": "Qwen3.5-4B（Q4_K_M）",
+      "default_for": [
+        "cn"
+      ],
+      "filename": "Qwen3.5-4B-Q4_K_M.gguf",
+      "size_bytes": 2740937888,
+      "sha256": "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4",
+      "context_size": 8192,
+      "note": "中国大陆线路的 Router-1 主候选（Apache-2.0）。仅用于结构化工具路由建议，不拥有权限也不执行工具。",
+      "sources": {
+        "cn": [
+          "https://hf-mirror.com/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf",
+          "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf"
+        ],
+        "intl": [
+          "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf",
+          "https://hf-mirror.com/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf"
+        ]
+      },
+      "requirements": {
+        "min_ram_gb": 8,
+        "min_free_disk_gb": 6
+      }
+    },
+    {
+      "id": "router-gemma-4-e4b-qat-q4kxl",
+      "label": "Gemma 4 E4B QAT（Q4_K_XL）",
+      "default_for": [
+        "intl"
+      ],
+      "filename": "gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf",
+      "size_bytes": 4215695776,
+      "sha256": "df0fd4ee07072c607c29a0a1cb4f98918426cca12f45a2776bdd6ee6d09a4de3",
+      "context_size": 8192,
+      "note": "海外线路的 Router-1 主候选（Apache-2.0）。仅用于结构化工具路由建议，不拥有权限也不执行工具。",
+      "sources": {
+        "intl": [
+          "https://huggingface.co/unsloth/gemma-4-E4B-it-qat-GGUF/resolve/main/gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf",
+          "https://hf-mirror.com/unsloth/gemma-4-E4B-it-qat-GGUF/resolve/main/gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf"
+        ],
+        "cn": [
+          "https://hf-mirror.com/unsloth/gemma-4-E4B-it-qat-GGUF/resolve/main/gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf",
+          "https://huggingface.co/unsloth/gemma-4-E4B-it-qat-GGUF/resolve/main/gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf"
+        ]
+      },
+      "requirements": {
+        "min_ram_gb": 12,
+        "min_free_disk_gb": 9
+      }
+    }
+  ]
 }
