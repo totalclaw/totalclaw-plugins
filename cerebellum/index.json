@@ -1,0 +1,22 @@
+{
+  "latest": "0.26.2",
+  "releases": [
+    {
+      "python_requires": ">=3.11,<3.13",
+      "sha256": "4bf41cfe71a806ad9d33103273c9502863a489296ca5efe5809709f5e2df232d",
+      "size_bytes": 140210,
+      "sources": {
+        "cn": [
+          "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/cerebellum/releases/0.26.2/totalclaw_agent_cerebellum-0.26.2-py3-none-any.whl"
+        ],
+        "intl": [
+          "https://gitee.com/jlzdyx/totalclaw-plugins/raw/master/cerebellum/releases/0.26.2/totalclaw_agent_cerebellum-0.26.2-py3-none-any.whl"
+        ]
+      },
+      "version": "0.26.2",
+      "wheel": "totalclaw_agent_cerebellum-0.26.2-py3-none-any.whl"
+    }
+  ],
+  "runtime_name": "totalclaw-cerebellum",
+  "schema_version": "1"
+}
