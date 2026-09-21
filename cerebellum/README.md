@@ -12,7 +12,7 @@
 ```
 cerebellum/
 ├── index.json                # 运行时版本索引：version / sha256 / size / cn+intl 源
-├── models.json               # Router-1 可选路由模型清单（当前为空，不提供模型）
+├── models.json               # Router-1 路由模型清单：国内千问、海外 Gemma（仅清单，权重不进仓）
 └── releases/<version>/*.whl  # 运行时 wheel（纯 Python，百 KB 级）
 ```
 
@@ -43,3 +43,18 @@ cp dist/*.whl cerebellum/releases/<版本>/
 agent 的 `totalclaw_core/cerebellum_runtime.py`，CLI 与企业版升级按钮共用。
 
 覆盖默认源：`TOTALCLAW_CEREBELLUM_INDEX` / `TOTALCLAW_CEREBELLUM_MODELS`。
+
+## 路由模型（models.json）
+
+| 线路 | 模型 | 体积 | 最低配置 |
+| --- | --- | --- | --- |
+| cn | Qwen3.5-4B（Q4_K_M） | 2.55 GB | 内存 ≥8 GB，磁盘 ≥6 GB |
+| intl | Gemma 4 E4B QAT（Q4_K_XL） | 3.93 GB | 内存 ≥12 GB，磁盘 ≥9 GB |
+
+- `default_for` 声明条目归属哪条线路；客户端只下本线路那一个。
+- `sha256` 取自 HuggingFace LFS oid（即文件本身的 sha256）。**换量化档时必须重新取，
+  不许手填**：`curl -s https://huggingface.co/api/models/<repo>/tree/main` 里对应文件
+  的 `lfs.oid` / `lfs.size`。
+- `requirements` 是客户端硬件门的判据：不满足则不下这个模型（智能路由不启用），
+  但运行时照装。
+- 源按线路排序，客户端逐个尝试，体积或摘要对不上就换下一个。
