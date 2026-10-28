@@ -491,8 +491,8 @@
       "files": [
         {
           "path": "README.md",
-          "sha256": "edb33e86d264b3f332c93e4fd11b8ba69807488825b408dac544ef789c2578cb",
-          "size": 2191
+          "sha256": "d08f5b9a12128ec1a5e9f7713a1abea8eac22d29d4faa323c72e3c46bfc775b9",
+          "size": 2326
         },
         {
           "path": "__init__.py",
@@ -515,7 +515,7 @@
           "size": 11341
         }
       ],
-      "bundle_sha256": "fc5af8371efb7966f4ad61bb50ffb6b7728efe06ae3f42b7dd158f618ca39188",
+      "bundle_sha256": "f4b6aa7b3267bb5cc22fa02d9274045b209baab13044a87ca082ff0f9ea5fc1d",
       "kind": "backend",
       "requires_env": [
         {

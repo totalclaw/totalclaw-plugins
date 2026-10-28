@@ -38,4 +38,5 @@ TopView(topview.ai):脚本 → 数字人口播视频(离线),按积分计费
 凭据解析优先级(与 agent 既有一致):环境变量 → config `digital_human.providers.topview`。
 装完默认不启用:`totalclaw plugins enable dh-topview` 或在 qiye-app 设置页开启。
 
-免费档有水印、单条时长受限,以 TopView 官网为准。
+免费档有水印、单条时长受限,以 TopView 官网为准。TopView 官方注明 Unlimited 套餐不支持
+MCP / Plugin / Skill(不支持自动化工作流),OpenAPI 是否同样受限待实测。
