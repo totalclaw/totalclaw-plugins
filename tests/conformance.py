@@ -37,7 +37,7 @@ VALID_KINDS = {"cloud", "selfhosted"}
 VALID_MODES = {"offline", "realtime"}
 
 # 零配置环境要清掉的厂商/配置 env 前缀
-_ENV_PREFIXES = ("ALIBABA_CLOUD_", "ALIYUN_", "TENCENTCLOUD_", "TENCENT_IVH_",
+_ENV_PREFIXES = ("ALIBABA_CLOUD_", "ALIYUN_", "TENCENTCLOUD_", "TENCENT_IVH_", "TOPVIEW_",
                  "HEYGEN_", "TAVUS_", "TOTALCLAW_DH_", "TOTALCLAW_DIGITAL_HUMAN")
 
 failures: list[str] = []

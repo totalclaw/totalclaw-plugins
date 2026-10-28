@@ -1,0 +1,17 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+tested_with: ">=0.63.72"
+name: dh-topview
+display_name: TopView 数字人口播
+version: 0.1.0
+description: "TopView(topview.ai)离线数字人口播:Video Avatar(/v1/video_avatar/task/submit)公模/私模/图片/视频驱动 + TTS 或上传音频,按积分计费;商品链接出带货视频走 totalclaw-mcp 的 topview 服务器"
+author: totalclaw
+kind: backend
+requires_env:
+  - name: TOPVIEW_API_KEY
+    description: TopView OpenAPI 的 API Key(topview.ai 登录后 API Settings 页复制)
+    prompt: 请粘贴 TopView API Settings 页里的 API Key
+  - name: TOPVIEW_UID
+    description: TopView 账号 UID(与 API Key 同页,也可点头像复制)
+    prompt: 请粘贴 TopView API Settings 页里的 UID
+optional_env: []
