@@ -477,7 +477,7 @@
       "id": "totalclaw-plugins/digital_human/dh-topview",
       "display_name": "TopView 数字人口播",
       "description": "TopView(topview.ai)离线数字人口播:Video Avatar(/v1/video_avatar/task/submit)公模/私模/图片/视频驱动 + TTS 或上传音频,按积分计费;商品链接出带货视频走 totalclaw-mcp 的 topview 服务器",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "totalclaw",
       "verified": true,
       "tested_with": ">=0.63.72",
@@ -491,8 +491,8 @@
       "files": [
         {
           "path": "README.md",
-          "sha256": "d08f5b9a12128ec1a5e9f7713a1abea8eac22d29d4faa323c72e3c46bfc775b9",
-          "size": 2326
+          "sha256": "0dbe561779160ace514970d6ac2a3711b91cfaabe68ab5da25e7075246a660ad",
+          "size": 3044
         },
         {
           "path": "__init__.py",
@@ -506,27 +506,27 @@
         },
         {
           "path": "plugin.yaml",
-          "sha256": "0a4fd13208b393022b9c6731876e2478aca4ea8f967dd4881ed959731ee8f6cf",
-          "size": 782
+          "sha256": "3c66b9f90b38f51890e6110f1d34d80be1d14c78aab4ac4441dda986ff3761e9",
+          "size": 863
         },
         {
           "path": "provider.py",
-          "sha256": "a652375a89856e42a9ac47743707c11bb1a7c6c45d64c6168e2b89614a0b0ddd",
-          "size": 11341
+          "sha256": "e9a549088a42f6cc8680cd1dfaa61e7560c4e0561aa64611d009a71159f605cd",
+          "size": 11759
         }
       ],
-      "bundle_sha256": "f4b6aa7b3267bb5cc22fa02d9274045b209baab13044a87ca082ff0f9ea5fc1d",
+      "bundle_sha256": "38d1ce4d36c72b04696feedb199c18a6c7ca695f8dcc4d85a02c7dac0fc4fca1",
       "kind": "backend",
       "requires_env": [
         {
           "name": "TOPVIEW_API_KEY",
-          "description": "TopView OpenAPI 的 API Key(topview.ai 登录后 API Settings 页复制)",
-          "prompt": "请粘贴 TopView API Settings 页里的 API Key"
+          "description": "TopView 旧版 API 的 API Key(www.topview.ai/api-settings 复制,仅 Pro / Business 会员可开通;新版 API Router 的 Key 不通用)",
+          "prompt": "请粘贴 TopView 旧版 API 设置页里的 API Key"
         },
         {
           "name": "TOPVIEW_UID",
-          "description": "TopView 账号 UID(与 API Key 同页,也可点头像复制)",
-          "prompt": "请粘贴 TopView API Settings 页里的 UID"
+          "description": "TopView 旧版 API 的 UID(与 API Key 同页,也可点头像复制)",
+          "prompt": "请粘贴 TopView 旧版 API 设置页里的 UID"
         }
       ]
     }

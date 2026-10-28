@@ -73,8 +73,13 @@ class TopviewBackend(DigitalHumanBackendBase):
             return ""
         missing = [n for n, v in (("TOPVIEW_API_KEY", self._api_key()),
                                   ("TOPVIEW_UID", self._uid())) if not v]
-        return (f"TopView 凭据未配置——请在 qiye-app 设置页填 {'、'.join(missing)}"
-                "(topview.ai 登录后 API Settings 页复制)")
+        reason = (f"TopView 凭据未配置——请在 ~/.totalclaw/.env 填 {'、'.join(missing)}"
+                  "(www.topview.ai/api-settings,旧版 API 仅 Pro / Business 会员可开通)")
+        # 新版 API Router 与旧版余额、Key 互不相通,且只有生图生视频模型、没有数字人
+        if resolve(_PROVIDER, "platform_key", "TOPVIEW_API_PLATFORM_KEY"):
+            reason += (";已配置的 TOPVIEW_API_PLATFORM_KEY 属于新版 API Router,"
+                       "它没有数字人模型,数字人口播只能用旧版 API")
+        return reason
 
     def _headers(self) -> Dict[str, str]:
         return {"Authorization": f"Bearer {self._api_key()}",
